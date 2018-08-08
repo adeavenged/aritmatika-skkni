@@ -29,22 +29,22 @@ function konversi($x){
  }
    
  function tkoma($x){
-  $str = stristr($x,",");
-  $ex = explode(',',$x);
-   
-  if(($ex[1]/10) >= 1){
+  $str = stristr($x,".");
+  $ex = explode('.',$x);
+  $a = 0;
+  if((@$ex[1]/10) >= 1){
    $a = abs($ex[1]);
   }
   $string = array("nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan",   "sembilan","sepuluh", "sebelas");
   $temp = "";
   
-  $a2 = $ex[1]/10;
+  $a2 = @$ex[1]/10;
   $pjg = strlen($str);
   $i =1;
      
    
-  if($a>=1 && $a< 12){  
-   $temp .= " ".$string[$a];
+  if($a >= 1 && $a < 12){  
+   $temp .= " ".$string['$a'];
   }else if($a>12 && $a < 20){  
    $temp .= konversi($a - 10)." belas";
   }else if ($a>20 && $a<100){  
