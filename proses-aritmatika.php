@@ -24,8 +24,10 @@
 				$terbilang = "";
 
 				if (isset($_POST['submit'])) {
+					//untuk menghilang koma dikarena js number
 					$angka1 = str_replace(",","",@$_POST['angka1']);
 					$angka2 = str_replace(",","",@$_POST['angka2']);
+					
 					$aritmatika = @$_POST['aritmatika'];
 
 					if ($aritmatika == 1) {
@@ -58,7 +60,7 @@
 
 	<script type="text/javascript">
 		$(function(){
-			responsiveVoice.speak("<?php echo $terbilang; ?>", 'Indonesian Female');	
+			responsiveVoice.speak("<?php echo $terbilang; ?>", 'Indonesian Male');	
 		})
 		
 	</script>
