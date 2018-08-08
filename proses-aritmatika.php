@@ -14,6 +14,7 @@
 	<div id="wrapper">
 		<div id="container">
 			<?php 
+				error_reporting(0);
 				include"function/aritmatika.php";
 				include"function/terbilang.php";
 
@@ -44,7 +45,7 @@
 						echo "Gagal...";
 					}
 
-					$terbilang = terbilang($hasil);
+					$terbilang = ucwords(terbilang($hasil));
 					echo "<br>Terbilang : ".$terbilang;
 					echo "<p>
 						<a href='index.php'>Kembali</a>
@@ -57,7 +58,7 @@
 
 	<script type="text/javascript">
 		$(function(){
-			responsiveVoice.speak("<?php echo $terbilang; ?>", 'Indonesian Male');	
+			responsiveVoice.speak("<?php echo $terbilang; ?>", 'Indonesian Female');	
 		})
 		
 	</script>

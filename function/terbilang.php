@@ -1,54 +1,82 @@
 <?php
-//author : https://gist.github.com/cahsowan/d315d54a59e4f14a6bab
-
-function terbilang($x) {
-  if ($x > 0) {
-    $angka = ["", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"];
-
-    if ($x < 12)
-      return " " . $angka[$x];
-    elseif ($x < 20)
-      return terbilang($x - 10) . " belas";
-    elseif ($x < 100)
-      return terbilang($x / 10) . " puluh" . terbilang($x % 10);
-    elseif ($x < 200)
-      return "seratus" . terbilang($x - 100);
-    elseif ($x < 1000)
-      return terbilang($x / 100) . " ratus" . terbilang($x % 100);
-    elseif ($x < 2000)
-      return "seribu" . terbilang($x - 1000);
-    elseif ($x < 1000000)
-      return terbilang($x / 1000) . " ribu" . terbilang($x % 1000);
-    elseif ($x < 1000000000)
-      return terbilang($x / 1000000) . " juta" . terbilang($x % 1000000);
-  } else {
-    $ab = explode("-", $x);
-    $ter = "";
-    $terb = "";
-    $angka = ["", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas"];
-
-    if ($ab[1] < 12)
-      $ter = " " . $angka[$ab[1]];
-    elseif ($ab[1] < 20)
-      $ter = terbilang($ab[1] - 10) . " belas";
-    elseif ($ab[1] < 100)
-      $ter = terbilang($ab[1] / 10) . " puluh" . terbilang($ab[1] % 10);
-    elseif ($ab[1] < 200)
-      $ter = "seratus" . terbilang($ab[1] - 100);
-    elseif ($ab[1] < 1000)
-      $ter = terbilang($ab[1] / 100) . " ratus" . terbilang($ab[1] % 100);
-    elseif ($ab[1] < 2000)
-      $ter = "seribu" . terbilang($ab[1] - 1000);
-    elseif ($ab[1] < 1000000)
-      $ter = terbilang($ab[1] / 1000) . " ribu" . terbilang($ab[1] % 1000);
-    elseif ($ab[1] < 1000000000)
-      $ter = terbilang($ab[1] / 1000000) . " juta" . terbilang($ab[1] % 1000000);
-
-
-    $terb = "minus ".$ter;
-    return $terb;
+function konversi($x){
+   
+  $x = abs($x);
+  $angka = array ("nol","satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan", "sembilan", "sepuluh", "sebelas");
+  $temp = "";
+   
+  if($x < 12){
+   $temp = " ".$angka[$x];
+  }else if($x<20){
+   $temp = konversi($x - 10)." belas";
+  }else if ($x<100){
+   $temp = konversi($x/10)." puluh". konversi($x%10);
+  }else if($x<200){
+   $temp = " seratus".konversi($x-100);
+  }else if($x<1000){
+   $temp = konversi($x/100)." ratus".konversi($x%100);  
+  }else if($x<2000){
+   $temp = " seribu".konversi($x-1000);
+  }else if($x<1000000){
+   $temp = konversi($x/1000)." ribu".konversi($x%1000);  
+  }else if($x<1000000000){
+   $temp = konversi($x/1000000)." juta".konversi($x%1000000);
+  }else if($x<1000000000000){
+   $temp = konversi($x/1000000000)." milyar".konversi($x%1000000000);
   }
-    
+   
+  return $temp;
+ }
+   
+ function tkoma($x){
+  $str = stristr($x,",");
+  $ex = explode(',',$x);
+   
+  if(($ex[1]/10) >= 1){
+   $a = abs($ex[1]);
+  }
+  $string = array("nol", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh", "delapan",   "sembilan","sepuluh", "sebelas");
+  $temp = "";
   
-}
+  $a2 = $ex[1]/10;
+  $pjg = strlen($str);
+  $i =1;
+     
+   
+  if($a>=1 && $a< 12){  
+   $temp .= " ".$string[$a];
+  }else if($a>12 && $a < 20){  
+   $temp .= konversi($a - 10)." belas";
+  }else if ($a>20 && $a<100){  
+   $temp .= konversi($a / 10)." puluh". konversi($a % 10);
+  }else{
+   if($a2<1){
+     
+    while ($i<$pjg){    
+     $char = substr($str,$i,1);    
+     $i++;
+     $temp .= " ".$string[$char];
+    }
+   }
+  } 
+  return $temp;
+ }
+  
+ function terbilang($x){
+  if($x<0){
+   $hasil = "minus ".trim(konversi($x));
+  }else{
+   $poin = trim(tkoma($x));
+   $hasil = trim(konversi($x));
+  }
+   
+if($poin){
+   $hasil = $hasil." koma ".$poin;
+  }else{
+   $hasil = $hasil;
+  }
+  return $hasil; 
+ }
+ 
+//echo ucwords(terbilang('3,99'));
 ?>
