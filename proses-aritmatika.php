@@ -24,28 +24,28 @@
 				$terbilang = "";
 
 				if (isset($_POST['submit'])) {
-					$angka1 = @$_POST['angka1'];
-					$angka2 = @$_POST['angka2'];
+					$angka1 = str_replace(",","",@$_POST['angka1']);
+					$angka2 = str_replace(",","",@$_POST['angka2']);
 					$aritmatika = @$_POST['aritmatika'];
 
 					if ($aritmatika == 1) {
 						$hasil = penjumlahan($angka1, $angka2);
-						echo "Hasil Penjumlahan : <b>" . $hasil ."</b>"; 
+						echo "Hasil Penjumlahan : <b>" . number_format($hasil,0) ."</b>"; 
 					} elseif ($aritmatika == 2) {
 						$hasil = pengurangan($angka1, $angka2);
-						echo "Hasil Pengurangan : <b>" . $hasil ."</b>";
+						echo "Hasil Pengurangan : <b>" . number_format($hasil,0) ."</b>";
 					} elseif ($aritmatika == 3) {
 						$hasil = perkalian($angka1, $angka2);
-						echo "Hasil Perkalian : <b>" . $hasil ."</b>";
+						echo "Hasil Perkalian : <b>" . number_format($hasil,0) ."</b>";
 					} elseif ($aritmatika == 4) {
 						$hasil = pembagian($angka1, $angka2);
-						echo "Hasil Pembagian : <b>" . $hasil."</b>";
+						echo "Hasil Pembagian : <b>" . number_format($hasil,0) ."</b>";
 					} else {
 						$hasil = 0;
 						echo "Gagal...";
 					}
 
-					$terbilang = ucwords(terbilang($hasil));
+					$terbilang = ucwords(terbilang($hasil,0));
 					echo "<br>Terbilang : ".$terbilang;
 					echo "<p>
 						<a href='index.php'>Kembali</a>
