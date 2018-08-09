@@ -16,7 +16,8 @@
 	}
 
 	function pembagian($x, $y) {
-		$hasil = $x / $y;
+		$hasilx = $x / $y;
+		$hasil = round($hasil, 2);
 		return $hasil;
 	}
 

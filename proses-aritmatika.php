@@ -14,7 +14,7 @@
 	<div id="wrapper">
 		<div id="container">
 			<?php 
-				//error_reporting(0);
+				error_reporting(0);
 				include"function/aritmatika.php";
 				include"function/terbilang.php";
 
@@ -35,19 +35,19 @@
 						echo "Hasil Penjumlahan : <b>" . number_format($hasil,0) ."</b>"; 
 					} elseif ($aritmatika == 2) {
 						$hasil = pengurangan($angka1, $angka2);
-						echo "Hasil Pengurangan : <b>" . $hasil ."</b>";
+						echo "Hasil Pengurangan : <b>" . number_format($hasil,3) ."</b>";
 					} elseif ($aritmatika == 3) {
 						$hasil = perkalian($angka1, $angka2);
-						echo "Hasil Perkalian : <b>" . $hasil ."</b>";
+						echo "Hasil Perkalian : <b>" . number_format($hasil,3) ."</b>";
 					} elseif ($aritmatika == 4) {
 						$hasil = pembagian($angka1, $angka2);
-						echo "Hasil Pembagian : <b>" . $hasil ."</b>";
+						echo "Hasil Pembagian : <b>" . number_format($hasil,3) ."</b>";
 					} else {
 						$hasil = 0;
 						echo "Gagal...";
 					}
 
-					$terbilang = ucwords(terbilang($hasil));
+					$terbilang = ucwords(terbilang(number_format($hasil,3)));
 					echo "<br>Terbilang : ".$terbilang;
 					echo "<p>
 						<a href='index.php'>Kembali</a>
